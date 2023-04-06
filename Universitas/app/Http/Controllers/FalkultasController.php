@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
 use Illuminate\Http\Request;
 
 class FalkultasController extends Controller
@@ -11,7 +12,8 @@ class FalkultasController extends Controller
      */
     public function index()
     {
-        return view('fakultas.index') -> with('dataFakultas', ['FIKR', 'FEB']);
+        $data = Fakultas::all();
+        return view('fakultas.index') -> with('dataFakultas',$data);
     }
 
     /**
