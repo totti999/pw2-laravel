@@ -23,6 +23,5 @@ Route::get('/profil', function(){
     return "halaman profil";
 });
 
-
-Route::get('prodi', [ProdiController::class, 'index']) -> name('prodi');
 Route::resource('fakultas', FalkultasController::class);
+Route::resource('prodi', ProdiController::class);
