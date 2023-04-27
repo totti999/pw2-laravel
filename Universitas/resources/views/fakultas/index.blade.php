@@ -1,9 +1,9 @@
-@extends('layout.master')
+@extends('layout.main')
 
 @section('title', 'Halaman Fakultas')
 @section('subtitle', 'Fakultas')
 
-
+@include('partials.navbar')
 @section('content')
     @section('credit','Universitas Multi Data Palembang')
 
@@ -23,7 +23,7 @@
                 <td>{{$item->nama_fakultas}}</td>
                  <td>{{$item->nama_dekan}}</td>
                  <td>{{$item->nama_wakil_dekan}}</td>
-                 <td>
+                 <td>       
                             @foreach ($item->prodi as $prodi )
                             {{$prodi->nama_prodi}}
                             @endforeach
