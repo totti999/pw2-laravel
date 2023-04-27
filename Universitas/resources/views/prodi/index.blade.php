@@ -20,7 +20,7 @@
             <tr>
                 <td>{{$item->nama_prodi}}</td>
                  <td>{{$item->Fakultas->nama_fakultas}}</td>
-                 <td>{{$item->created_at}}</td>
+                 <td>{{$item->created}}</td>
             </tr>
             @endforeach
         </tbody>
