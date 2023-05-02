@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Halaman Fakultas</h1>
+        <h1> @yield('title')</h1>
         <hr>
         <h2>@yield('subtitle')</h2>
         @yield('content')
