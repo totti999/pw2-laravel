@@ -35,6 +35,9 @@
 
                     </table>
                   </div>
+                    <div class="d-flex justify-content-end mt-3">
+                      <a href="{{ route('prodi.create')}} " class="btn btn-rounded btn-primary ">Tambah Data</a>
+                  </div>
                 </div>
               </div>
             </div>

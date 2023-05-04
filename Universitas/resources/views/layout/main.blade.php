@@ -302,6 +302,7 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+          <h2> <b>@yield('subtitle')</b></h2>
           @yield('content')
         </div>
         <!-- content-wrapper ends -->
