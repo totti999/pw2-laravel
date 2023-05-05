@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                       <label for="fakultas_id">Pilih Fakultas Prodi</label>
-                     <select name="fakultas_id" class="form-control">
+                     <select name="fakultas_id" class="form-control js-example-basic-single">
                      @foreach ($fakultas as $item)
                             <option value="{{$item->id}}">{{$item->nama_fakultas}}</option>
                      @endforeach

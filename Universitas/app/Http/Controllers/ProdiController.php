@@ -17,7 +17,9 @@ class ProdiController extends Controller
 
        public function create()
     {
-        $fakultas = Fakultas::all();
+       
+         $fakultas = Fakultas::orderBy('nama_fakultas', 'ASC')->get();
+
         return view('prodi.create', compact('fakultas'));
     }
 
@@ -39,7 +41,9 @@ class ProdiController extends Controller
         $prodi->nama_prodi = $validasi['nama_prodi'];
         $prodi->fakultas_id = $validasi['fakultas_id'];
         $prodi->save();
-            return redirect()->route('prodi.index')->with('success',"Data".$validasi['nama_prodi']. "berhasil disimpan");
+
+
+        return redirect()->route('prodi.index')->with('success',"Data".$validasi['nama_prodi']. "berhasil disimpan");
 
 
     }
