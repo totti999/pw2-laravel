@@ -15,15 +15,15 @@
                       <div class="alert alert-success">
                           {{Session::get('success')}}
                       </div>
-                    
+
                   @endif
                   <h4 class="card-title">Data Fakultas</h4>
-                 
+
                   <div class="table-responsive">
-                    
+
                     <table class="table table-striped">
                       <thead>
-                       
+
                         <tr>
                             <th>Nama Fakultas</th>
                             <TH>Nama Dekan</TH>
@@ -45,7 +45,7 @@
                           </td>
                           <td>
                                @foreach ($item->prodi as $prodi )
-                                    {{$prodi->nama_prodi}}
+                                    {{$prodi->nama_prodi}},
                                 @endforeach
                           </td>
                           <td>{{$item->created_at}}</td>
@@ -57,13 +57,13 @@
                   <div class="d-flex justify-content-end mt-3">
                       <a href="{{ route('fakultas.create')}} " class="btn btn-rounded btn-primary ">Tambah Data</a>
                   </div>
-                   
+
                 </div>
               </div>
             </div>
           </div>
 @endsection
-{{-- 
+{{--
 
     <table class="table table-hover">
         <thead>
@@ -81,11 +81,11 @@
                 <td>{{$item->nama_fakultas}}</td>
                  <td>{{$item->nama_dekan}}</td>
                  <td>{{$item->nama_wakil_dekan}}</td>
-                 <td>       
+                 <td>
                             @foreach ($item->prodi as $prodi )
                             {{$prodi->nama_prodi}}
                             @endforeach
-                 </td> 
+                 </td>
                  <td>{{$item->created_at}}</td>
             </tr>
             @endforeach

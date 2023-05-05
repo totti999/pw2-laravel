@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('fakultas', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
-            $table->char('nama_fakultas', 50);
+            $table->char('nama_fakultas', 50)->unique();
             $table->char('nama_dekan', 50);
             $table->char('nama_wakil_dekan', 50);
             $table->timestamps();

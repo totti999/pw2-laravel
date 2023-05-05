@@ -17,7 +17,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="nama_prodi">Nama Prodi</label>
-                      <input type="text" class="form-control" name="nama_prodi" placeholder="nama prodi">
+                      <input type="text" class="form-control" name="nama_prodi" value="{{old('nama_prodi')}}" placeholder="nama prodi">
                       @error('nama_prodi')
                          <span class="text-danger">{{$message}}</span>
                       @enderror

@@ -11,11 +11,21 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                    @if (Session::get('success'))
+                            <div class="alert alert-success">
+                          {{Session::get('success')}}
+                      </div>
+                    @elseif (Session::get('error'))
+                             <div class="alert alert-danger">
+                          {{Session::get('error')}}
+                      </div>
+                    @endif
+
                   <h4 class="card-title">Data Fakultas</h4>
                   <div class="table-responsive">
-                    
+
                     <table class="table table-striped">
-                  
+
                         <thead>
                             <tr>
                                 <th>Nama Prodi</th>
@@ -37,12 +47,13 @@
                   </div>
                     <div class="d-flex justify-content-end mt-3">
                       <a href="{{ route('prodi.create')}} " class="btn btn-rounded btn-primary ">Tambah Data</a>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-   
+
 @endsection
 

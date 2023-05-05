@@ -28,20 +28,19 @@ class ProdiController extends Controller
 
         $validasi = $request->validate([
 
-             'nama_prodi'=> 'required',
+             'nama_prodi'=> 'required|unique:prodi,nama_prodi',
             'fakultas_id' => 'required',
 
 
         ]);
 
         // dd($validasi);
-
         $prodi = new Prodi();
         $prodi->nama_prodi = $validasi['nama_prodi'];
         $prodi->fakultas_id = $validasi['fakultas_id'];
         $prodi->save();
+            return redirect()->route('prodi.index')->with('success',"Data".$validasi['nama_prodi']. "berhasil disimpan");
 
-        return redirect()->route('prodi.index')->with('success',"Data".$validasi['nama_prodi']. "berhasil disimpan");
 
     }
 }
