@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->uuid('id')->autoIncrement()->primary();
-            $table->integer('npm', 10)->unique();
+            $table->uuid('id');
+            $table->primary('id');
+            $table->char('npm', 10)->unique();
             $table->string('nama');
             $table->date('tanggal_lahir');
              $table->string('kota_lahir');

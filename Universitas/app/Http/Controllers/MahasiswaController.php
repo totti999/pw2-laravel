@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
+use App\Models\Prodi;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        $data = Mahasiswa::all(); 
+        return view('mahasiswa.index')->with('mahasiswas',$data);
     }
 
     /**
@@ -20,7 +23,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
+        return view('mahasiswa.create', compact('prodi'));
     }
 
     /**
