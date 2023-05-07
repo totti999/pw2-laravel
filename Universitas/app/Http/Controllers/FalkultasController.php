@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Fakultas;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class FalkultasController extends Controller
 {
     /**
@@ -40,6 +39,7 @@ class FalkultasController extends Controller
 
         ]);
 
+        $validasi['id'] = Str::uuid();
         // dd($validasi);
 
         $fakultas = new Fakultas();

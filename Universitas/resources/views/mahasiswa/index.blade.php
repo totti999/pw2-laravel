@@ -18,7 +18,7 @@
 
                   @endif
                   <h4 class="card-title">Data</h4>
-
+                 
                   <div class="table-responsive">
 
                     <table class="table table-striped">
@@ -35,13 +35,22 @@
                         </tr>
                       </thead>
                       <tbody>
-                            <tr>
-
-                            </tr>
+                        @foreach ($mahasiswas as $item)
+                              <tr>
+                                  <td><img src="{{  asset('storage/images/' . $item->foto) }}" alt="Foto" class="img-fluid"></td>
+                                  <td>{{$item->npm}}</td>
+                                  <td>{{$item->nama}}</td>
+                                  <td>{{ DateTime::createFromFormat('Y-m-d', $item->tanggal_lahir)->format('d F Y') }}</td>
+                                  <td>{{$item->kota_lahir}}</td>
+                                  <td>{{$item->Prodi->nama_prodi}}</td>
+                                  <td>{{$item->created_at}}</td>
+                              </tr>
+                          @endforeach
                       </tbody>
                     </table>
                   </div>
                   <div class="d-flex justify-content-end mt-3">
+                      
                       <a href="{{ route('mahasiswa.create')}} " class="btn btn-rounded btn-primary ">Tambah Data</a>
                   </div>
 

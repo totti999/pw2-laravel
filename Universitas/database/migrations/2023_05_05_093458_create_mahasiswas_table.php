@@ -16,7 +16,7 @@ return new class extends Migration
             $table->primary('id');
             $table->char('npm', 10)->unique();
             $table->string('nama');
-            $table->date('tanggal_lahir');
+            $table->date('tanggal_lahir')->format('d/m/Y');
              $table->string('kota_lahir');
              $table->string('foto');
              $table->uuid('prodi_id');

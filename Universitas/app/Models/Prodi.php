@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Prodi extends Model
 {
-    use HasFactory, HasUuids;
-
+    use HasFactory;
+    // use HasUuids;
+    protected $keyType ='string';
+    public $incrementing = false;
     protected $table='prodi';
 
     public function fakultas(){

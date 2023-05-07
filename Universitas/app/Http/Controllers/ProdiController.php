@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Prodi;
 use App\Models\Fakultas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProdiController extends Controller
 {
@@ -35,7 +36,7 @@ class ProdiController extends Controller
 
 
         ]);
-
+        $validasi['id'] = Str::uuid();
         // dd($validasi);
         $prodi = new Prodi();
         $prodi->nama_prodi = $validasi['nama_prodi'];
@@ -43,7 +44,7 @@ class ProdiController extends Controller
         $prodi->save();
 
 
-        return redirect()->route('prodi.index')->with('success',"Data".$validasi['nama_prodi']. "berhasil disimpan");
+        return redirect()->route('prodi.index')->with('success',"Data ".$validasi['nama_prodi']. " berhasil disimpan");
 
 
     }

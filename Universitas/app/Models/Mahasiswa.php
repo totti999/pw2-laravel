@@ -10,11 +10,7 @@ class Mahasiswa extends Model
     use HasFactory, HasUuids;
 
     public function prodi(){
-        return $this->belongsTo(Prodi::class);
-    }
-
-    public function fakultas(){
-        return $this->belongsTo(Fakultas::class, 'fakultas_id');
+        return $this->belongsTo(Prodi::class, 'prodi_id');
     }
 
 }
