@@ -25,7 +25,7 @@ class MahasiswaController extends Controller
     public function create()
     {
         // $client = new Client();
-        // $response = $client->request('GET', 'https://gorest.co.in/public/v2/users');
+        // $response = $client->request('GET', 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/16.json');
         // $regencies = json_decode($response->getBody(), true);
         
         $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
