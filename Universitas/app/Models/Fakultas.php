@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fakultas extends Model
 {
-    use HasFactory;
-    // use HasUuids;
+    use HasFactory, HasUuids;
+    // 
 
     protected $keyType ='string';
     public $incrementing = false;

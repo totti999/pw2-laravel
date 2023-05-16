@@ -45,11 +45,12 @@
                       </div>
                       <div class="form-group">
                         <label for="kota_lahir">Pilih Kota Lahir</label>
-                       <select name="kota_lahir" class="form-control js-example-basic-single">
+                       {{-- <select name="kota_lahir" class="form-control js-example-basic-single">
                        @foreach ($regencies as $item2)
                               <option value="{{$item2['name']}}">{{$item2['name']}}</option>
                        @endforeach
-                      </select>
+                      </select> --}}
+                       <input type="text" class="form-control" name="kota_lahir" placeholder="Kota Lahir">
                         @error('kota_lahir')
                            <span class="text-danger">{{$message}}</span>
                         @enderror

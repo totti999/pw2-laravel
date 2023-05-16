@@ -24,12 +24,12 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        $client = new Client();
-        $response = $client->request('GET', 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/16.json');
-        $regencies = json_decode($response->getBody(), true);
+        // $client = new Client();
+        // $response = $client->request('GET', 'https://gorest.co.in/public/v2/users');
+        // $regencies = json_decode($response->getBody(), true);
         
         $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
-        return view('mahasiswa.create', compact('prodi', 'regencies'));
+        return view('mahasiswa.create', compact('prodi'));
     }
     /**
      * Store a newly created resource in storage.
@@ -48,6 +48,7 @@ class MahasiswaController extends Controller
         $temp = $request->foto->getClientOriginalExtension();
         $nama_foto = $validasi['npm'] . '.' . $temp;
        $path = $request->foto->storeAs('public/images', $nama_foto);
+      
        
         // dd($validasi);
         $mahasiswa = new Mahasiswa();
@@ -58,6 +59,7 @@ class MahasiswaController extends Controller
         $mahasiswa->kota_lahir = $validasi['kota_lahir'];
         $mahasiswa->prodi_id = $validasi['prodi_id'];
         $mahasiswa->save();
+       
 
 
         return redirect()->route('mahasiswa.index')->with('success',"Data ".$validasi['nama']. " berhasil disimpan");

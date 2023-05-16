@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Prodi extends Model
 {
-    use HasFactory;
+    use HasFactory,
+    HasUuids;
     // use HasUuids;
     protected $keyType ='string';
     public $incrementing = false;
