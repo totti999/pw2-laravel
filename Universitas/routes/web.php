@@ -27,3 +27,5 @@ Route::get('/profil', function(){
 Route::resource('fakultas', FalkultasController::class);
 Route::resource('prodi', ProdiController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
+
+Route::post('mhs-delete', [MahasiswaController::class, 'multiDelete'])->name('mhs-delete');
