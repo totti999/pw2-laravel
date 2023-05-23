@@ -78,7 +78,8 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
-        //
+         $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
+        return view('mahasiswa.edit')->with('mahasiswa', $mahasiswa)->with('prodi', $prodi);
     }
 
     /**
@@ -95,7 +96,9 @@ class MahasiswaController extends Controller
     public function destroy(Mahasiswa $mahasiswa)
     {
             $mahasiswa->delete();
-            return redirect()->back()->with('success', 'Data berhasil dihapus');
+            // return redirect()->back()->with('success', 'Data berhasil dihapus');
+
+            return response("selected data deleted succesfully", 200);
     }
 
     public function multiDelete(Request $request){
