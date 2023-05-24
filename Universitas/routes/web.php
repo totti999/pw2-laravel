@@ -28,4 +28,4 @@ Route::resource('fakultas', FalkultasController::class);
 Route::resource('prodi', ProdiController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 
-Route::post('mhs-delete', [MahasiswaController::class, 'multiDelete'])->name('mhs-delete');
+Route::post('mhs-multi-delete', [MahasiswaController::class, 'multiDelete'])->name('mhs-multi-delete');

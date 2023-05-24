@@ -13,32 +13,34 @@
                   <p class="card-description">
                     Formulir 
                   </p>
-                  <form class="forms-sample" action="{{ route('mahasiswa.edit')}} " method="post" enctype="multipart/form-data">
+                  <form class="forms-sample" action="{{ route('mahasiswa.update', $mahasiswa->id)}} " method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('patch')
+                   
                     <div class="form-group">
                       <label for="foto">Foto</label>
-                      <input type="file" class="form-control" name="foto" placeholder="foto">
+                      <input type="file" class="form-control" name="foto" placeholder="foto" value="{{ $mahasiswa->foto}}">
                       @error('foto')
                          <span class="text-danger">{{$message}}</span>
                       @enderror 
                     </div>
                      <div class="form-group">
                       <label for="npm">NPM</label>
-                      <input type="number" class="form-control" name="npm" placeholder="NPM" value="{{ $mahasi}}">
+                      <input type="number" class="form-control" name="npm" placeholder="NPM" value="{{ $mahasiswa->npm}}" disabled>
                       @error('npm')
                            <span class="text-danger">{{$message}}</span>
                       @enderror
                     </div>
                      <div class="form-group">
                       <label for="nama">Nama</label>
-                      <input type="text" class="form-control" name="nama" placeholder="nama">
+                      <input type="text" class="form-control" name="nama" placeholder="nama" value="{{ $mahasiswa->nama}}">
                       @error('nama')
                            <span class="text-danger">{{$message}}</span>
                       @enderror
                     </div>
                     <div class="form-group">
                         <label for="tanggal_lahir">Tanggal Lahir</label>
-                        <input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
+                        <input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ $mahasiswa->tanggal_lahir}}">
                         @error('tgl_lahir')
                              <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -50,7 +52,7 @@
                               <option value="{{$item2['name']}}">{{$item2['name']}}</option>
                        @endforeach
                       </select> --}}
-                       <input type="text" class="form-control" name="kota_lahir" placeholder="Kota Lahir">
+                       <input type="text" class="form-control" name="kota_lahir" placeholder="Kota Lahir" value="{{ $mahasiswa->kota_lahir}}">
                         @error('kota_lahir')
                            <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -59,7 +61,10 @@
                         <label for="prodi_id">Pilih Prodi</label>
                        <select name="prodi_id" class="form-control js-example-basic-single">
                        @foreach ($prodi as $item)
-                              <option value="{{$item->id}}">{{$item->nama_prodi}}</option>
+                              <option 
+                              @if ($mahasiswa->prodi_id == $item['id']) selected     
+                              @endif
+                              value="{{$item['id']}}">{{$item->nama_prodi}}</option>
                        @endforeach
                       </select>
                         @error('nama_prodi')

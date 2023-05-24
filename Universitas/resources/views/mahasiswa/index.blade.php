@@ -17,7 +17,7 @@
                     </div>
                 @endif
                 <h4 class="card-title">Data</h4>
-
+                 
                 <div class="table-responsive">
 
                     <table class="table table-striped table-hover" id="posts-table">
@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($mahasiswas as $item)
+                            @foreach ($mahasiswa as $item)
                                 <tr>
                                     <td><input type="checkbox" class="check" value="{{ $item->id }}"></td>
                                     <td><img src="{{ asset('storage/images/' . $item->foto) }}" alt="Foto"
@@ -55,22 +55,19 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-end mt-3">
-
                     <a href="{{ route('mahasiswa.create') }} " class="btn btn-rounded btn-primary ">Tambah Data</a>
-                  
-
-               
-                           <button class="btn btn-danger btn-rounded ms-3" id="multi-delete" data-route="{{ route('mhs-delete') }}">Delete All Selected</button>
-              
+                    
+                    @if (count($mahasiswa) != 0)
+                    <button class="btn btn-danger btn-rounded ms-3" id="multi-delete" data-route="{{ route('mhs-multi-delete') }}">Delete All Selected</button>
+                    @endif
                 </div>
-
             </div>  
         </div>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://www.jqueryscript.net/demo/check-all-rows/dist/TableCheckAll.js"></script>
 
 <script type="text/javascript">
@@ -111,7 +108,7 @@
                     showCancelButton: false,
                     confirmButtonText: 'Yes'
                 }).then((result) => {
-                window.location='/posts'
+                window.location='/mahasiswa'
                 });
             }
             });
@@ -149,7 +146,7 @@
                     showCancelButton: false,
                     confirmButtonText: 'Yes'
                 }).then((result) => {
-                window.location='/posts'
+                window.location='/mahasiswa'
                 });
             }
             });

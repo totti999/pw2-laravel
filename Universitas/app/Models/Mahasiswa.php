@@ -13,9 +13,6 @@ class Mahasiswa extends Model
         return $this->belongsTo(Prodi::class, 'prodi_id');
     }
 
-    protected $fillable = [
-        'created_at',
-        'update_at'
-    ];
+   
 
 }

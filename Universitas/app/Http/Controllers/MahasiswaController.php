@@ -16,7 +16,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $data = Mahasiswa::all();
-        return view('mahasiswa.index')->with('mahasiswas',$data);
+        return view('mahasiswa.index')->with('mahasiswa',$data);
     }
 
     /**
@@ -78,6 +78,7 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
+       
          $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
         return view('mahasiswa.edit')->with('mahasiswa', $mahasiswa)->with('prodi', $prodi);
     }
@@ -87,7 +88,28 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        //
+        $validasi = $request->validate([
+            'foto' =>'required|file|image|max:5000', 
+            'nama' =>'required',
+            'tanggal_lahir' =>'required',
+            'kota_lahir'=>'required',
+            "prodi_id" =>'required'
+        ]);
+
+        $temp = $request->foto->getClientOriginalExtension();
+        $nama_foto = $mahasiswa->npm. '.' . $temp;
+       $path = $request->foto->storeAs('public/images', $nama_foto);
+
+        $mahasiswa->foto =$nama_foto;
+        $mahasiswa->nama = $validasi['nama'];
+        $mahasiswa->tanggal_lahir = $validasi['tanggal_lahir'];
+        $mahasiswa->kota_lahir = $validasi['kota_lahir'];
+        $mahasiswa->prodi_id = $validasi['prodi_id'];
+        $mahasiswa->save();
+
+
+
+        return redirect()->route('mahasiswa.index')->with('success',"Data ".$validasi['nama']. " berhasil disimpan");
     }
 
     /**
@@ -96,9 +118,9 @@ class MahasiswaController extends Controller
     public function destroy(Mahasiswa $mahasiswa)
     {
             $mahasiswa->delete();
-            // return redirect()->back()->with('success', 'Data berhasil dihapus');
+            return redirect()->route('mahasiswa.index')->with('success', 'Data berhasil dihapus');
 
-            return response("selected data deleted succesfully", 200);
+            // return response("selected data deleted succesfully", 200);
     }
 
     public function multiDelete(Request $request){
