@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Models\Fakultas;
+namespace App\Http\Controllers; 
 use GuzzleHttp\Client;
 use App\Models\Prodi;
 use App\Models\Mahasiswa;
@@ -15,7 +13,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $data = Mahasiswa::all();
+        $data = Mahasiswa::all(); 
         return view('mahasiswa.index')->with('mahasiswa',$data);
     }
 
@@ -24,12 +22,12 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        // $client = new Client();
-        // $response = $client->request('GET', 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/16.json');
-        // $regencies = json_decode($response->getBody(), true);
-
+        $client = new Client();
+        $response = $client->request('GET', 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/16.json');
+        $regencies = json_decode($response->getBody(), true);
+        
         $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
-        return view('mahasiswa.create', compact('prodi'));
+        return view('mahasiswa.create', compact('prodi', 'regencies'));
     }
     /**
      * Store a newly created resource in storage.
@@ -49,17 +47,19 @@ class MahasiswaController extends Controller
         $nama_foto = $validasi['npm'] . '.' . $temp;
        $path = $request->foto->storeAs('public/images', $nama_foto);
 
+        $validasi['foto'] = $nama_foto;
 
+       Mahasiswa::create($validasi);
+       
         // dd($validasi);
-        $mahasiswa = new Mahasiswa();
-        $mahasiswa->foto =$nama_foto;
-        $mahasiswa->npm = $validasi['npm'];
-        $mahasiswa->nama = $validasi['nama'];
-        $mahasiswa->tanggal_lahir = $validasi['tanggal_lahir'];
-        $mahasiswa->kota_lahir = $validasi['kota_lahir'];
-        $mahasiswa->prodi_id = $validasi['prodi_id'];
-        $mahasiswa->save();
-
+        // $mahasiswa = new Mahasiswa();
+        // $mahasiswa->foto =$nama_foto;
+        // $mahasiswa->npm = $validasi['npm'];
+        // $mahasiswa->nama = $validasi['nama'];
+        // $mahasiswa->tanggal_lahir = $validasi['tanggal_lahir'];
+        // $mahasiswa->kota_lahir = $validasi['kota_lahir'];
+        // $mahasiswa->prodi_id = $validasi['prodi_id'];
+        // $mahasiswa->save();
 
 
         return redirect()->route('mahasiswa.index')->with('success',"Data ".$validasi['nama']. " berhasil disimpan");
@@ -122,10 +122,9 @@ class MahasiswaController extends Controller
 
             // return response("selected data deleted succesfully", 200);
     }
-
     public function multiDelete(Request $request){
-                Mahasiswa::whereIn('id', $request->get('selected'))->delete();
+        Mahasiswa::whereIn('id', $request->get('selected'))->delete();
 
-                return response("selected data deleted succesfully", 200);
-    }
+        return response("selected data deleted succesfully", 200);
+}
 }

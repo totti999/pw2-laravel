@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Fakultas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 class FalkultasController extends Controller
 {
     /**
@@ -42,11 +43,13 @@ class FalkultasController extends Controller
         $validasi['id'] = Str::uuid();
         // dd($validasi);
 
-        $fakultas = new Fakultas();
-        $fakultas->nama_fakultas = $validasi['nama_fakultas'];
-        $fakultas->nama_dekan = $validasi['nama_dekan'];
-        $fakultas->nama_wakil_dekan = $validasi['nama_wakil_dekan'];
-        $fakultas->save();
+        Fakultas::create($validasi);
+
+        // $fakultas = new Fakultas();
+        // $fakultas->nama_fakultas = $validasi['nama_fakultas'];
+        // $fakultas->nama_dekan = $validasi['nama_dekan'];
+        // $fakultas->nama_wakil_dekan = $validasi['nama_wakil_dekan'];
+        // $fakultas->save();
 
         return redirect()->route('fakultas.index')->with('success',"Data ".$validasi['nama_fakultas']. " berhasil disimpan");
 
@@ -81,6 +84,6 @@ class FalkultasController extends Controller
      */
     public function destroy(string $id)
     {
-
+        //
     }
 }

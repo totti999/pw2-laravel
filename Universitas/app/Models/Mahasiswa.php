@@ -13,6 +13,10 @@ class Mahasiswa extends Model
         return $this->belongsTo(Prodi::class, 'prodi_id');
     }
 
-   
+    protected $guarded =[
+        'id',
+        'created_at',
+        'updated_at',
+    ];
 
 }

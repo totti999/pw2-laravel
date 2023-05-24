@@ -37,11 +37,13 @@ class ProdiController extends Controller
 
         ]);
         $validasi['id'] = Str::uuid();
+
+        Prodi::create($validasi);
         // dd($validasi);
-        $prodi = new Prodi();
-        $prodi->nama_prodi = $validasi['nama_prodi'];
-        $prodi->fakultas_id = $validasi['fakultas_id'];
-        $prodi->save();
+        // $prodi = new Prodi();
+        // $prodi->nama_prodi = $validasi['nama_prodi'];
+        // $prodi->fakultas_id = $validasi['fakultas_id'];
+        // $prodi->save();
 
 
         return redirect()->route('prodi.index')->with('success',"Data ".$validasi['nama_prodi']. " berhasil disimpan");
