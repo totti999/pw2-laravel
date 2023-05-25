@@ -19,4 +19,12 @@ class Mahasiswa extends Model
         'updated_at',
     ];
 
+    protected $fillable=[
+        'npm',
+        'nama',
+        'tanggal_lahir',
+        'kota_lahir',
+        'foto',
+        'prodi_id'
+    ];
 }

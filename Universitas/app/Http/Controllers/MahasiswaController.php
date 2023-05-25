@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers; 
+namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use App\Models\Prodi;
 use App\Models\Mahasiswa;
@@ -11,9 +11,16 @@ class MahasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Mahasiswa::all(); 
+        $keyword = $request->query('search');
+        if($keyword){
+            $data = Mahasiswa::where('nama', 'LIKE','%'.$keyword.'%')->paginate(10);
+        }
+        else{
+                 $data = Mahasiswa::paginate(10);
+        }
+
         return view('mahasiswa.index')->with('mahasiswa',$data);
     }
 
@@ -25,7 +32,7 @@ class MahasiswaController extends Controller
         $client = new Client();
         $response = $client->request('GET', 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/16.json');
         $regencies = json_decode($response->getBody(), true);
-        
+
         $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
         return view('mahasiswa.create', compact('prodi', 'regencies'));
     }
@@ -50,7 +57,7 @@ class MahasiswaController extends Controller
         $validasi['foto'] = $nama_foto;
 
        Mahasiswa::create($validasi);
-       
+
         // dd($validasi);
         // $mahasiswa = new Mahasiswa();
         // $mahasiswa->foto =$nama_foto;
@@ -78,7 +85,7 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
-       
+
          $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
         return view('mahasiswa.edit')->with('mahasiswa', $mahasiswa)->with('prodi', $prodi);
     }
@@ -89,7 +96,7 @@ class MahasiswaController extends Controller
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
         $validasi = $request->validate([
-            'foto' =>'required|file|image|max:5000', 
+            'foto' =>'required|file|image|max:5000',
             'nama' =>'required',
             'tanggal_lahir' =>'required',
             'kota_lahir'=>'required',
