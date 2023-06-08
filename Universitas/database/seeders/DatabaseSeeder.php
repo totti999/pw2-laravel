@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
                 'tanggal_lahir' => fake()->date($format = 'Y-m-d', $max = 'now'),
                 'kota_lahir' => fake()->state(),
                 'foto' => '2024250039.png',
-                'prodi_id' => '993ffb13-d2a4-4293-b2d6-74950628aff0',
+                'prodi_id' => '995c1580-0b47-407a-b0a3-34524b1ee160',
 
             ]);
         }

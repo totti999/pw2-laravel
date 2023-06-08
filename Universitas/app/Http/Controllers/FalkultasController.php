@@ -21,6 +21,7 @@ class FalkultasController extends Controller
      */
     public function create()
     {
+        $otor = $this->authorize('create', Fakultas::class);
         return view('fakultas.create');
     }
 
@@ -29,6 +30,7 @@ class FalkultasController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Fakultas::class);
         // dd($request); for all
         // dd($request->nama_fakultas); for specify
 
