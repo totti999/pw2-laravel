@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::post('login', [AuthController::class, 'login']);
